@@ -7,10 +7,7 @@
 //
 
 #import "ZENAppDelegate.h"
-
-#import "ZENFirstViewController.h"
-
-#import "ZENSecondViewController.h"
+#import "ZENSuperEagleDashboard.h"
 
 @implementation ZENAppDelegate
 
@@ -18,10 +15,10 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    UIViewController *viewController1 = [[ZENFirstViewController alloc] initWithNibName:@"ZENFirstViewController" bundle:nil];
-    UIViewController *viewController2 = [[ZENSecondViewController alloc] initWithNibName:@"ZENSecondViewController" bundle:nil];
+    UIViewController *viewController1 = [[ZENSuperEagleDashboard alloc] initWithNibName:@"ZENSuperEagleDashboard" bundle:nil];
+//    UIViewController *viewController2 = [[ZENSecondViewController alloc] initWithNibName:@"ZENSecondViewController" bundle:nil];
     self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = @[viewController1, viewController2];
+    self.tabBarController.viewControllers = @[viewController1];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     return YES;

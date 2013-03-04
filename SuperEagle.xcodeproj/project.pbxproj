@@ -16,14 +16,12 @@
 		55E2C40016E4399500777DB0 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 55E2C3FF16E4399500777DB0 /* Default.png */; };
 		55E2C40216E4399500777DB0 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55E2C40116E4399500777DB0 /* Default@2x.png */; };
 		55E2C40416E4399500777DB0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55E2C40316E4399500777DB0 /* Default-568h@2x.png */; };
-		55E2C40716E4399500777DB0 /* ZENFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E2C40616E4399500777DB0 /* ZENFirstViewController.m */; };
 		55E2C40916E4399500777DB0 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 55E2C40816E4399500777DB0 /* first.png */; };
 		55E2C40B16E4399500777DB0 /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55E2C40A16E4399500777DB0 /* first@2x.png */; };
-		55E2C40E16E4399500777DB0 /* ZENSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E2C40D16E4399500777DB0 /* ZENSecondViewController.m */; };
 		55E2C41016E4399500777DB0 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 55E2C40F16E4399500777DB0 /* second.png */; };
 		55E2C41216E4399500777DB0 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55E2C41116E4399500777DB0 /* second@2x.png */; };
-		55E2C41516E4399500777DB0 /* ZENFirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E2C41316E4399500777DB0 /* ZENFirstViewController.xib */; };
-		55E2C41816E4399500777DB0 /* ZENSecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E2C41616E4399500777DB0 /* ZENSecondViewController.xib */; };
+		55E2C42116E43A0E00777DB0 /* ZENSuperEagleDashboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E2C41F16E43A0E00777DB0 /* ZENSuperEagleDashboard.m */; };
+		55E2C42216E43A0E00777DB0 /* ZENSuperEagleDashboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E2C42016E43A0E00777DB0 /* ZENSuperEagleDashboard.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,16 +38,13 @@
 		55E2C3FF16E4399500777DB0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		55E2C40116E4399500777DB0 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		55E2C40316E4399500777DB0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		55E2C40516E4399500777DB0 /* ZENFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZENFirstViewController.h; sourceTree = "<group>"; };
-		55E2C40616E4399500777DB0 /* ZENFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZENFirstViewController.m; sourceTree = "<group>"; };
 		55E2C40816E4399500777DB0 /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
 		55E2C40A16E4399500777DB0 /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		55E2C40C16E4399500777DB0 /* ZENSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZENSecondViewController.h; sourceTree = "<group>"; };
-		55E2C40D16E4399500777DB0 /* ZENSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZENSecondViewController.m; sourceTree = "<group>"; };
 		55E2C40F16E4399500777DB0 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		55E2C41116E4399500777DB0 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
-		55E2C41416E4399500777DB0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ZENFirstViewController.xib; sourceTree = "<group>"; };
-		55E2C41716E4399500777DB0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ZENSecondViewController.xib; sourceTree = "<group>"; };
+		55E2C41E16E43A0E00777DB0 /* ZENSuperEagleDashboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZENSuperEagleDashboard.h; sourceTree = "<group>"; };
+		55E2C41F16E43A0E00777DB0 /* ZENSuperEagleDashboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZENSuperEagleDashboard.m; sourceTree = "<group>"; };
+		55E2C42016E43A0E00777DB0 /* ZENSuperEagleDashboard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZENSuperEagleDashboard.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,17 +93,14 @@
 			children = (
 				55E2C3FC16E4399500777DB0 /* ZENAppDelegate.h */,
 				55E2C3FD16E4399500777DB0 /* ZENAppDelegate.m */,
-				55E2C40516E4399500777DB0 /* ZENFirstViewController.h */,
-				55E2C40616E4399500777DB0 /* ZENFirstViewController.m */,
 				55E2C40816E4399500777DB0 /* first.png */,
 				55E2C40A16E4399500777DB0 /* first@2x.png */,
-				55E2C40C16E4399500777DB0 /* ZENSecondViewController.h */,
-				55E2C40D16E4399500777DB0 /* ZENSecondViewController.m */,
 				55E2C40F16E4399500777DB0 /* second.png */,
 				55E2C41116E4399500777DB0 /* second@2x.png */,
-				55E2C41316E4399500777DB0 /* ZENFirstViewController.xib */,
-				55E2C41616E4399500777DB0 /* ZENSecondViewController.xib */,
 				55E2C3F416E4399500777DB0 /* Supporting Files */,
+				55E2C41E16E43A0E00777DB0 /* ZENSuperEagleDashboard.h */,
+				55E2C41F16E43A0E00777DB0 /* ZENSuperEagleDashboard.m */,
+				55E2C42016E43A0E00777DB0 /* ZENSuperEagleDashboard.xib */,
 			);
 			path = SuperEagle;
 			sourceTree = "<group>";
@@ -187,8 +179,7 @@
 				55E2C40B16E4399500777DB0 /* first@2x.png in Resources */,
 				55E2C41016E4399500777DB0 /* second.png in Resources */,
 				55E2C41216E4399500777DB0 /* second@2x.png in Resources */,
-				55E2C41516E4399500777DB0 /* ZENFirstViewController.xib in Resources */,
-				55E2C41816E4399500777DB0 /* ZENSecondViewController.xib in Resources */,
+				55E2C42216E43A0E00777DB0 /* ZENSuperEagleDashboard.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,8 +192,7 @@
 			files = (
 				55E2C3FA16E4399500777DB0 /* main.m in Sources */,
 				55E2C3FE16E4399500777DB0 /* ZENAppDelegate.m in Sources */,
-				55E2C40716E4399500777DB0 /* ZENFirstViewController.m in Sources */,
-				55E2C40E16E4399500777DB0 /* ZENSecondViewController.m in Sources */,
+				55E2C42116E43A0E00777DB0 /* ZENSuperEagleDashboard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,22 +205,6 @@
 				55E2C3F716E4399500777DB0 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		55E2C41316E4399500777DB0 /* ZENFirstViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				55E2C41416E4399500777DB0 /* en */,
-			);
-			name = ZENFirstViewController.xib;
-			sourceTree = "<group>";
-		};
-		55E2C41616E4399500777DB0 /* ZENSecondViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				55E2C41716E4399500777DB0 /* en */,
-			);
-			name = ZENSecondViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
