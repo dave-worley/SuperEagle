@@ -52,7 +52,7 @@
     CGRect windowFrame = [[UIScreen mainScreen] bounds];
     NSInteger width = windowFrame.size.width;
     NSInteger columnWidth = width / 3;
-    NSInteger columnStart = columnWidth / 2 - 5;
+    NSInteger columnStart = (columnWidth / 2) - 5;
     for (UISlider *slider in motorSliders) {
         CGRect sliderFrame = slider.frame;
         CGRect newFrame = CGRectMake(columnStart, 20, sliderFrame.size.width, sliderFrame.size.height);
