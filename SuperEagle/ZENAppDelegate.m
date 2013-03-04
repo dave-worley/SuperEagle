@@ -16,10 +16,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     UIViewController *viewController1 = [[ZENSuperEagleDashboard alloc] initWithNibName:@"ZENSuperEagleDashboard" bundle:nil];
-//    UIViewController *viewController2 = [[ZENSecondViewController alloc] initWithNibName:@"ZENSecondViewController" bundle:nil];
-    self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = @[viewController1];
-    self.window.rootViewController = self.tabBarController;
+    self.window.rootViewController = viewController1;
     [self.window makeKeyAndVisible];
     return YES;
 }

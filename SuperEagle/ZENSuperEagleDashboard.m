@@ -61,5 +61,40 @@
     }
     return motorSliders;
 }
+- (NSArray *)positionMotorSpeedLabels:(NSArray *)motorSpeedLabels
+{
+    CGRect windowFrame = [[UIScreen mainScreen] bounds];
+    NSInteger width = windowFrame.size.width;
+    NSInteger columnWidth = width / 3;
+    NSInteger columnStart = (columnWidth / 2) - 5;
+    for (UILabel *label in motorSpeedLabels) {
+        CGRect currentFrame = [label frame];
+        CGRect newFrame = CGRectMake(columnStart, currentFrame.origin.y, currentFrame.size.width, currentFrame.size.height);
+        [label setFrame:newFrame];
+        columnStart += columnWidth;
+    }
+    return motorSpeedLabels;
+}
+
+#pragma mark - Event Handling
+- (IBAction) leftMotorSliderChanged:(id)sender
+{
+}
+- (IBAction) motorSliderChanged:(id)sender
+{
+}
+- (IBAction) rightMotorSliderChanged:(id)sender
+{
+}
+- (IBAction) motorSliderWasReleased:(id)sender
+{
+    [UIView animateWithDuration:0.25f animations:^{
+        [(UISlider *)sender setValue:0];
+    }];
+}
+- (NSString *) stringForSlider:(UISlider *)slider
+{
+    return [NSString stringWithFormat:@"%f", slider.value];
+}
 
 @end

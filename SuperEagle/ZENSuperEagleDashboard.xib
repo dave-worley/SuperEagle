@@ -35,68 +35,75 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUISlider" id="755926857">
+					<object class="IBUISlider" id="319244953">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{18, 179}, {284, 23}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="352509871"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
+						<int key="IBUITag">10</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<float key="IBUIMinValue">-255</float>
 						<float key="IBUIMaxValue">255</float>
-						<object class="NSColor" key="IBUIMinimumTrackTintColor" id="332485229">
+						<object class="NSColor" key="IBUIMinimumTrackTintColor" id="613449508">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MSAwIDAAA</bytes>
 						</object>
-						<reference key="IBUIMaximumTrackTintColor" ref="332485229"/>
-						<object class="NSColor" key="IBUIThumbTintColor" id="438023953">
+						<reference key="IBUIMaximumTrackTintColor" ref="613449508"/>
+						<object class="NSColor" key="IBUIThumbTintColor" id="963852695">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MAA</bytes>
 						</object>
 					</object>
-					<object class="IBUISlider" id="359832331">
+					<object class="IBUISlider" id="269567966">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{18, 121}, {284, 23}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="319244953"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
+						<int key="IBUITag">5</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<float key="IBUIMinValue">-255</float>
 						<float key="IBUIMaxValue">255</float>
-						<reference key="IBUIMinimumTrackTintColor" ref="332485229"/>
-						<reference key="IBUIMaximumTrackTintColor" ref="332485229"/>
-						<reference key="IBUIThumbTintColor" ref="438023953"/>
+						<reference key="IBUIMinimumTrackTintColor" ref="613449508"/>
+						<reference key="IBUIMaximumTrackTintColor" ref="613449508"/>
+						<reference key="IBUIThumbTintColor" ref="963852695"/>
 					</object>
-					<object class="IBUISlider" id="969266193">
+					<object class="IBUISlider" id="352509871">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{18, 238}, {284, 23}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
+						<int key="IBUITag">15</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<float key="IBUIMinValue">-255</float>
 						<float key="IBUIMaxValue">255</float>
-						<reference key="IBUIMinimumTrackTintColor" ref="332485229"/>
-						<reference key="IBUIMaximumTrackTintColor" ref="332485229"/>
-						<reference key="IBUIThumbTintColor" ref="438023953"/>
+						<reference key="IBUIMinimumTrackTintColor" ref="613449508"/>
+						<reference key="IBUIMaximumTrackTintColor" ref="613449508"/>
+						<reference key="IBUIThumbTintColor" ref="963852695"/>
 					</object>
 				</array>
 				<string key="NSFrame">{{0, 20}, {320, 548}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="IBUIBackgroundColor" ref="438023953"/>
+				<reference key="NSNextKeyView" ref="269567966"/>
+				<reference key="IBUIBackgroundColor" ref="963852695"/>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 				<object class="IBUIScreenMetrics" key="IBUISimulatedDestinationMetrics">
 					<string key="IBUISimulatedSizeMetricsClass">IBUIScreenMetrics</string>
@@ -132,7 +139,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">leftMotorSlider</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="359832331"/>
+						<reference key="destination" ref="269567966"/>
 					</object>
 					<int key="connectionID">15</int>
 				</object>
@@ -140,7 +147,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">motorSlider</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="755926857"/>
+						<reference key="destination" ref="319244953"/>
 					</object>
 					<int key="connectionID">16</int>
 				</object>
@@ -148,9 +155,63 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">rightMotorSlider</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="969266193"/>
+						<reference key="destination" ref="352509871"/>
 					</object>
 					<int key="connectionID">17</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">motorSliderChanged:</string>
+						<reference key="source" ref="319244953"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">13</int>
+					</object>
+					<int key="connectionID">25</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">motorSliderWasReleased:</string>
+						<reference key="source" ref="319244953"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">31</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">leftMotorSliderChanged:</string>
+						<reference key="source" ref="269567966"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">13</int>
+					</object>
+					<int key="connectionID">24</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">motorSliderWasReleased:</string>
+						<reference key="source" ref="269567966"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">30</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">rightMotorSliderChanged:</string>
+						<reference key="source" ref="352509871"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">13</int>
+					</object>
+					<int key="connectionID">26</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">motorSliderWasReleased:</string>
+						<reference key="source" ref="352509871"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">32</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -165,9 +226,9 @@
 						<int key="objectID">1</int>
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="755926857"/>
-							<reference ref="359832331"/>
-							<reference ref="969266193"/>
+							<reference ref="319244953"/>
+							<reference ref="269567966"/>
+							<reference ref="352509871"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -184,18 +245,18 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">4</int>
-						<reference key="object" ref="755926857"/>
+						<reference key="object" ref="319244953"/>
 						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">10</int>
-						<reference key="object" ref="359832331"/>
+						<reference key="object" ref="269567966"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">12</int>
-						<reference key="object" ref="969266193"/>
+						<reference key="object" ref="352509871"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
@@ -214,30 +275,69 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">17</int>
+			<int key="maxID">32</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">ZENSuperEagleDashboard</string>
 					<string key="superclassName">UIViewController</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="leftMotorSliderChanged:">id</string>
+						<string key="motorSliderChanged:">id</string>
+						<string key="motorSliderWasReleased:">id</string>
+						<string key="rightMotorSliderChanged:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="leftMotorSliderChanged:">
+							<string key="name">leftMotorSliderChanged:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="motorSliderChanged:">
+							<string key="name">motorSliderChanged:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="motorSliderWasReleased:">
+							<string key="name">motorSliderWasReleased:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="rightMotorSliderChanged:">
+							<string key="name">rightMotorSliderChanged:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="leftMotorSlider">UISlider</string>
+						<string key="leftMotorSpeedDisplay">UILabel</string>
 						<string key="motorSlider">UISlider</string>
+						<string key="motorSpeedDisplay">UILabel</string>
 						<string key="rightMotorSlider">UISlider</string>
+						<string key="rightMotorSpeedDisplay">UILabel</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="leftMotorSlider">
 							<string key="name">leftMotorSlider</string>
 							<string key="candidateClassName">UISlider</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="leftMotorSpeedDisplay">
+							<string key="name">leftMotorSpeedDisplay</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="motorSlider">
 							<string key="name">motorSlider</string>
 							<string key="candidateClassName">UISlider</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="motorSpeedDisplay">
+							<string key="name">motorSpeedDisplay</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="rightMotorSlider">
 							<string key="name">rightMotorSlider</string>
 							<string key="candidateClassName">UISlider</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="rightMotorSpeedDisplay">
+							<string key="name">rightMotorSpeedDisplay</string>
+							<string key="candidateClassName">UILabel</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

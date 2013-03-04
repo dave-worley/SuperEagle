@@ -8,10 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZENAppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
-
+@interface ZENAppDelegate : UIResponder <UIApplicationDelegate>
 @property (strong, nonatomic) UIWindow *window;
-
-@property (strong, nonatomic) UITabBarController *tabBarController;
-
 @end
