@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		55B702F216E5A41A00747044 /* BLESerial.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B702F116E5A41A00747044 /* BLESerial.m */; };
 		55E2C3EE16E4399500777DB0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E2C3ED16E4399500777DB0 /* UIKit.framework */; };
 		55E2C3F016E4399500777DB0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E2C3EF16E4399500777DB0 /* Foundation.framework */; };
 		55E2C3F216E4399500777DB0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E2C3F116E4399500777DB0 /* CoreGraphics.framework */; };
@@ -28,8 +27,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		55B702F016E5A41A00747044 /* BLESerial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLESerial.h; sourceTree = "<group>"; };
-		55B702F116E5A41A00747044 /* BLESerial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLESerial.m; sourceTree = "<group>"; };
 		55E2C3EA16E4399500777DB0 /* SuperEagle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperEagle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55E2C3ED16E4399500777DB0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		55E2C3EF16E4399500777DB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -91,8 +88,6 @@
 		55E2C3EC16E4399500777DB0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				55B702F016E5A41A00747044 /* BLESerial.h */,
-				55B702F116E5A41A00747044 /* BLESerial.m */,
 				55E2C42316E457EE00777DB0 /* BLE_Framework */,
 				55E2C42816E45E3100777DB0 /* CoreBluetooth.framework */,
 				55E2C3ED16E4399500777DB0 /* UIKit.framework */,
@@ -218,7 +213,6 @@
 				55E2C3FE16E4399500777DB0 /* ZENAppDelegate.m in Sources */,
 				55E2C42116E43A0E00777DB0 /* ZENSuperEagleDashboard.m in Sources */,
 				55E2C42716E457EE00777DB0 /* BLE.m in Sources */,
-				55B702F216E5A41A00747044 /* BLESerial.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
