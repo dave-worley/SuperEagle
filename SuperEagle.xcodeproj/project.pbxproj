@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		55B702F216E5A41A00747044 /* BLESerial.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B702F116E5A41A00747044 /* BLESerial.m */; };
 		55E2C3EE16E4399500777DB0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E2C3ED16E4399500777DB0 /* UIKit.framework */; };
 		55E2C3F016E4399500777DB0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E2C3EF16E4399500777DB0 /* Foundation.framework */; };
 		55E2C3F216E4399500777DB0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E2C3F116E4399500777DB0 /* CoreGraphics.framework */; };
@@ -23,9 +24,12 @@
 		55E2C42116E43A0E00777DB0 /* ZENSuperEagleDashboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E2C41F16E43A0E00777DB0 /* ZENSuperEagleDashboard.m */; };
 		55E2C42216E43A0E00777DB0 /* ZENSuperEagleDashboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E2C42016E43A0E00777DB0 /* ZENSuperEagleDashboard.xib */; };
 		55E2C42716E457EE00777DB0 /* BLE.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E2C42516E457EE00777DB0 /* BLE.m */; };
+		55E2C42916E45E3100777DB0 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E2C42816E45E3100777DB0 /* CoreBluetooth.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		55B702F016E5A41A00747044 /* BLESerial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLESerial.h; sourceTree = "<group>"; };
+		55B702F116E5A41A00747044 /* BLESerial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLESerial.m; sourceTree = "<group>"; };
 		55E2C3EA16E4399500777DB0 /* SuperEagle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperEagle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55E2C3ED16E4399500777DB0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		55E2C3EF16E4399500777DB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -49,6 +53,7 @@
 		55E2C42416E457EE00777DB0 /* BLE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLE.h; sourceTree = "<group>"; };
 		55E2C42516E457EE00777DB0 /* BLE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLE.m; sourceTree = "<group>"; };
 		55E2C42616E457EE00777DB0 /* BLEDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEDefines.h; sourceTree = "<group>"; };
+		55E2C42816E45E3100777DB0 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55E2C42916E45E3100777DB0 /* CoreBluetooth.framework in Frameworks */,
 				55E2C3EE16E4399500777DB0 /* UIKit.framework in Frameworks */,
 				55E2C3F016E4399500777DB0 /* Foundation.framework in Frameworks */,
 				55E2C3F216E4399500777DB0 /* CoreGraphics.framework in Frameworks */,
@@ -85,7 +91,10 @@
 		55E2C3EC16E4399500777DB0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				55B702F016E5A41A00747044 /* BLESerial.h */,
+				55B702F116E5A41A00747044 /* BLESerial.m */,
 				55E2C42316E457EE00777DB0 /* BLE_Framework */,
+				55E2C42816E45E3100777DB0 /* CoreBluetooth.framework */,
 				55E2C3ED16E4399500777DB0 /* UIKit.framework */,
 				55E2C3EF16E4399500777DB0 /* Foundation.framework */,
 				55E2C3F116E4399500777DB0 /* CoreGraphics.framework */,
@@ -96,13 +105,13 @@
 		55E2C3F316E4399500777DB0 /* SuperEagle */ = {
 			isa = PBXGroup;
 			children = (
+				55E2C3F416E4399500777DB0 /* Supporting Files */,
 				55E2C3FC16E4399500777DB0 /* ZENAppDelegate.h */,
 				55E2C3FD16E4399500777DB0 /* ZENAppDelegate.m */,
 				55E2C40816E4399500777DB0 /* first.png */,
 				55E2C40A16E4399500777DB0 /* first@2x.png */,
 				55E2C40F16E4399500777DB0 /* second.png */,
 				55E2C41116E4399500777DB0 /* second@2x.png */,
-				55E2C3F416E4399500777DB0 /* Supporting Files */,
 				55E2C41E16E43A0E00777DB0 /* ZENSuperEagleDashboard.h */,
 				55E2C41F16E43A0E00777DB0 /* ZENSuperEagleDashboard.m */,
 				55E2C42016E43A0E00777DB0 /* ZENSuperEagleDashboard.xib */,
@@ -209,6 +218,7 @@
 				55E2C3FE16E4399500777DB0 /* ZENAppDelegate.m in Sources */,
 				55E2C42116E43A0E00777DB0 /* ZENSuperEagleDashboard.m in Sources */,
 				55E2C42716E457EE00777DB0 /* BLE.m in Sources */,
+				55B702F216E5A41A00747044 /* BLESerial.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +333,7 @@
 				55E2C41D16E4399500777DB0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
