@@ -1,3 +1,4 @@
+#include <Wire.h>
 #include <SPI.h>
 #include <ble.h>
 
@@ -9,6 +10,7 @@ void setup()
   SPI.begin();
   ble_begin();
   Serial.begin(9600);
+  Wire.begin();
 }
 void get_ble_value(char* readString)
 {
@@ -35,9 +37,8 @@ void split_motor_speed(char * instring, char * motor, char * motorSpeed)
   motorString = input.substring(0,1);
   motorString.toCharArray(motor, sizeof(motor));
 
-  motorSpeedString = input.substring(2, 10);
-  motorSpeedString.toCharArray(motorSpeed, sizeof(motorSpeed));
-  Serial.println(motorSpeed);
+  motorSpeedString = input.substring(2, 8);
+  motorSpeedString.toCharArray(motorSpeed, 5);
 }
 
 String motorCodeToString(char * motor)
@@ -54,20 +55,11 @@ int motorSpeedArrayToInt(char * motorSpeed)
 void loop()
 {
   char val[10];
-  char motorArray[2];
-  char motorSpeedArray[10];
-  String motorCode;
-  int speedValue;
   get_ble_value(val);
   if (val[0] != 0) {
-    split_motor_speed(val, motorArray, motorSpeedArray);
-
-    motorCode = motorCodeToString(motorArray);
-    speedValue = motorSpeedArrayToInt(motorSpeedArray);
+    Wire.beginTransmission(4);
+    Wire.send(val);
+    Wire.endTransmission();
   }
-//  if (val[0] != 0) {
-//    Serial.println(motorSpeedArray);
-//    //Serial.println(motorCode + " at " + speedValue);
-//  }
   ble_do_events();
 }
