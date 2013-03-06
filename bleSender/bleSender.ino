@@ -9,8 +9,8 @@ void setup()
   SPI.setClockDivider(SPI_CLOCK_DIV16);
   SPI.begin();
   ble_begin();
-  Serial.begin(9600);
   Wire.begin();
+  Serial.begin(9600);
 }
 void get_ble_value(char* readString)
 {
@@ -55,10 +55,22 @@ int motorSpeedArrayToInt(char * motorSpeed)
 void loop()
 {
   char val[10];
+  char motorArray[2];
+  char motorSpeedArray[10];
+  int speedValue;
+  int counter = 0;
   get_ble_value(val);
   if (val[0] != 0) {
-    Wire.beginTransmission(4);
-    Wire.send(val);
+    
+    split_motor_speed(val, motorArray, motorSpeedArray);
+    speedValue = motorSpeedArrayToInt(motorSpeedArray);
+    
+    Serial.print(motorArray[0]);
+    Serial.println(speedValue);
+    
+    Wire.beginTransmission(9);
+    Wire.write(motorArray[0]);
+    Wire.write(speedValue);
     Wire.endTransmission();
   }
   ble_do_events();

@@ -1,66 +1,36 @@
 #include <Wire.h>
 #include <MotorControl.h>
 
+#define MAX_SENT_BYTES 10
+
 MotorControl *leftMotor;
 MotorControl *rightMotor;
 
+char motorCode;
+int speedValue;
+
 void setup()
 { 
-  Wire.begin(4);
+  Wire.begin(9);
+  Wire.onReceive(answerer);
+  Serial.begin(9600);
   leftMotor = new MotorControl(12, 3, 9);
   rightMotor = new MotorControl(13, 11, 8);
   
   leftMotor->setup();
   rightMotor->setup();
 }
-void stop()
+void answerer(int bytesReceived)
 {
-  leftMotor->stop();
-  rightMotor->stop();
-}
-void split_motor_speed(char * instring, char * motor, char * motorSpeed)
-{
-  String input = String(instring);
-  String motorString;
-  String motorSpeedString;
-
-  motorString = input.substring(0,1);
-  motorString.toCharArray(motor, sizeof(motor));
-
-  motorSpeedString = input.substring(2, 8);
-  motorSpeedString.toCharArray(motorSpeed, 5);
-}
-
-String motorCodeToString(char * motor)
-{
-  return String(motor);
-}
-int motorSpeedArrayToInt(char * motorSpeed)
-{
-  int speedValue;
-  speedValue = atoi(motorSpeed);
-  return speedValue;
-}
-void loop()
-{
-  char val[10];
-  char motorArray[2];
-  char motorSpeedArray[10];
-  String motorCode;
-  int speedValue;
-  int counter = 0;
   boolean reverse = false;
 
   while (Wire.available()) {
-    val[counter] = Wire.read();
-    counter++;
+    motorCode = Wire.read(); // first byte should be a char
+    speedValue = Wire.read(); // rest should be the speed value  
   }
-  
-  if (val[0] != 0) {
-    split_motor_speed(val, motorArray, motorSpeedArray);
-    motorCode = motorCodeToString(motorArray);
-    speedValue = motorSpeedArrayToInt(motorSpeedArray);
-    
+
+  if (motorCode != 0) {
+
     if (speedValue < 0) {
       speedValue = speedValue * -1;
       reverse = true;
@@ -68,21 +38,21 @@ void loop()
       reverse = false;
     }
     
-    if (motorCode.equals("l")) {
+    if (motorCode == 'l') {
         leftMotor->setSpeed(speedValue);
         if (reverse) {
           leftMotor->reverse();
         } else {
           leftMotor->forward();
         }    
-    } else if (motorCode.equals("r")) {
+    } else if (motorCode == 'r') {
         rightMotor->setSpeed(speedValue);
         if (reverse) {
           rightMotor->reverse();
         } else {
           rightMotor->forward();
         }    
-    } else if (motorCode.equals("m")) {
+    } else if (motorCode == 'm') {
         leftMotor->setSpeed(speedValue);
         rightMotor->setSpeed(speedValue);
         if (reverse) {
@@ -97,5 +67,17 @@ void loop()
     }
   } else {
     stop();
+  }
+}
+void stop()
+{
+  leftMotor->stop();
+  rightMotor->stop();
+}
+void loop()
+{
+  if (motorCode != 0) {
+    Serial.print(motorCode);
+    Serial.println(" at " + speedValue);
   }
 }
