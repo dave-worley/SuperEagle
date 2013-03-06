@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UISlider *leftMotorSlider;
 @property (weak, nonatomic) IBOutlet UISlider *motorSlider;
 @property (weak, nonatomic) IBOutlet UISlider *rightMotorSlider;
+@property (weak, nonatomic) IBOutlet UIButton *buttonConnect;
 
 - (IBAction) leftMotorSliderChanged:(id)sender;
 - (IBAction) motorSliderChanged:(id)sender;
@@ -26,5 +27,6 @@
 - (NSString *) stringForSlider:(UISlider *)slider;
 - (void) connectionTimer:(NSTimer *)timer;
 - (IBAction)scanForPeripherals:(id)sender;
+- (void) bleWrite:(NSString *)payload;
 
 @end

@@ -85,22 +85,22 @@
 {
     UISlider *slider = (UISlider *)sender;
     NSInteger index = roundl(slider.value);
-    NSData *payload = [NSData dataWithBytes:&index length:sizeof(index)];
-    [self.bleShield write:payload];
+    NSString *outputString = [NSString stringWithFormat:@"l:%d", index];
+    [self bleWrite:outputString];
 }
 - (IBAction) motorSliderChanged:(id)sender
 {
     UISlider *slider = (UISlider *)sender;
     NSInteger index = roundl(slider.value);
-    NSData *payload = [NSData dataWithBytes:&index length:sizeof(index)];
-    [self.bleShield write:payload];
+    NSString *outputString = [NSString stringWithFormat:@"m:%d", index];
+    [self bleWrite:outputString];
 }
 - (IBAction) rightMotorSliderChanged:(id)sender
 {
     UISlider *slider = (UISlider *)sender;
     NSInteger index = roundl(slider.value);
-    NSData *payload = [NSData dataWithBytes:&index length:sizeof(index)];
-    [self.bleShield write:payload];
+    NSString *outputString = [NSString stringWithFormat:@"r:%d", index];
+    [self bleWrite:outputString];
 }
 - (IBAction) motorSliderWasReleased:(id)sender
 {
@@ -114,6 +114,11 @@
 - (NSString *) stringForSlider:(UISlider *)slider
 {
     return [NSString stringWithFormat:@"%f", slider.value];
+}
+- (void) bleWrite:(NSString *)payload
+{
+    NSData *data = [payload dataUsingEncoding:NSUTF8StringEncoding];
+    [self.bleShield write:data];
 }
 
 #pragma mark - BLE stuff
@@ -134,13 +139,13 @@
 
 - (void) bleDidDisconnect
 {
-    //[self.buttonConnect setTitle:@"Connect" forState:UIControlStateNormal];
+    [self.buttonConnect setTitle:@"Connect" forState:UIControlStateNormal];
 }
 
 -(void) bleDidConnect
 {
     [self.spinner stopAnimating];
-    //[self.buttonConnect setTitle:@"Disconnect" forState:UIControlStateNormal];
+    [self.buttonConnect setTitle:@"Disconnect" forState:UIControlStateNormal];
 }
 
 -(void) bleDidUpdateRSSI:(NSNumber *)rssi
@@ -166,40 +171,5 @@
 
     [NSTimer scheduledTimerWithTimeInterval:(float)7.0 target:self selector:@selector(connectionTimer:) userInfo:nil repeats:NO];
 }
-
-//- (IBAction)BLEShieldSend:(id)sender
-//{
-//    NSString *s;
-//    NSData *d;
-//
-//    if (self.textField.text.length > 16)
-//        s = [self.textField.text substringToIndex:16];
-//    else
-//        s = self.textField.text;
-//
-//    s = [NSString stringWithFormat:@"%@\r\n", s];
-//    d = [s dataUsingEncoding:NSUTF8StringEncoding];
-//
-//    [bleShield write:d];
-//}
-//
-//- (IBAction)BLEShieldScan:(id)sender
-//{
-//    if (bleShield.activePeripheral)
-//        if(bleShield.activePeripheral.isConnected)
-//        {
-//            [[bleShield CM] cancelPeripheralConnection:[bleShield activePeripheral]];
-//            return;
-//        }
-//
-//    if (bleShield.peripherals)
-//        bleShield.peripherals = nil;
-//
-//    [bleShield findBLEPeripherals:3];
-//
-//    [NSTimer scheduledTimerWithTimeInterval:(float)3.0 target:self selector:@selector(connectionTimer:) userInfo:nil repeats:NO];
-//
-//    [self.spinner startAnimating];
-//}
 
 @end
