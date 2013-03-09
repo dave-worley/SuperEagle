@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BLE.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface ZENSuperEagleDashboard : UIViewController <BLEDelegate>
 
@@ -16,7 +17,9 @@
 @property (weak, nonatomic) IBOutlet UISlider *leftMotorSlider;
 @property (weak, nonatomic) IBOutlet UISlider *motorSlider;
 @property (weak, nonatomic) IBOutlet UISlider *rightMotorSlider;
-@property (weak, nonatomic) IBOutlet UIButton *buttonConnect;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *buttonConnect;
+
+@property (strong, nonatomic) AVAudioPlayer *player;
 
 - (IBAction) leftMotorSliderChanged:(id)sender;
 - (IBAction) motorSliderChanged:(id)sender;

@@ -35,6 +35,10 @@
                                                  self.motorSlider,
                                                  self.rightMotorSlider, nil];
     [self positionMotorSliders:[self realignMotorSliders:sliders]];
+
+    NSURL *themeURL = [[NSBundle mainBundle] URLForResource:@"sunmantheme" withExtension:@"caf"];
+    self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:themeURL error:nil];
+    [self.player prepareToPlay];
 }
 
 - (void)didReceiveMemoryWarning
@@ -139,13 +143,17 @@
 
 - (void) bleDidDisconnect
 {
-    [self.buttonConnect setTitle:@"Connect" forState:UIControlStateNormal];
+    [self.buttonConnect setTitle:@"Connect"];
+    [self.buttonConnect setTintColor:[UIColor redColor]];
+    [self.player stop];
 }
 
 -(void) bleDidConnect
 {
     [self.spinner stopAnimating];
-    [self.buttonConnect setTitle:@"Disconnect" forState:UIControlStateNormal];
+    [self.buttonConnect setTitle:@"Disconnect"];
+    [self.buttonConnect setTintColor:[UIColor blackColor]];
+    [self.player play];
 }
 
 -(void) bleDidUpdateRSSI:(NSNumber *)rssi
