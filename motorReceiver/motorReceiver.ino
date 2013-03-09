@@ -23,13 +23,21 @@ void setup()
 void answerer(int bytesReceived)
 {
   boolean reverse = false;
-
+  String val;
+  int counter = 0;
   while (Wire.available()) {
-    motorCode = Wire.read(); // first byte should be a char
-    speedValue = Wire.read(); // rest should be the speed value  
+    char c = Wire.read();
+    if (counter == 0) {
+      motorCode = c;
+    } else if (counter > 0) {
+      val += c;
+    }
+    counter++;
   }
-
-  if (motorCode != 0) {
+  if (counter > 0) {
+    speedValue = val.toInt();
+    Serial.print(motorCode);
+    Serial.println(speedValue);
 
     if (speedValue < 0) {
       speedValue = speedValue * -1;
@@ -39,20 +47,31 @@ void answerer(int bytesReceived)
     }
     
     if (motorCode == 'l') {
-        leftMotor->setSpeed(speedValue);
-        if (reverse) {
-          leftMotor->reverse();
+        if (speedValue == 0) {
+          stop();
         } else {
-          leftMotor->forward();
-        }    
+          leftMotor->setSpeed(speedValue);
+          if (reverse) {
+            leftMotor->reverse();
+          } else {
+            leftMotor->forward();
+          }
+        }
     } else if (motorCode == 'r') {
+      if (speedValue == 0) {
+        stop();
+      } else {
         rightMotor->setSpeed(speedValue);
         if (reverse) {
           rightMotor->reverse();
         } else {
           rightMotor->forward();
-        }    
+        }
+      } 
     } else if (motorCode == 'm') {
+      if (speedValue == 0) {
+        stop();
+      } else {
         leftMotor->setSpeed(speedValue);
         rightMotor->setSpeed(speedValue);
         if (reverse) {
@@ -61,12 +80,9 @@ void answerer(int bytesReceived)
         } else {
           leftMotor->forward();
           rightMotor->forward();
-        }    
-    } else {
-      stop();
+        }
+      } 
     }
-  } else {
-    stop();
   }
 }
 void stop()
@@ -74,10 +90,12 @@ void stop()
   leftMotor->stop();
   rightMotor->stop();
 }
+void zeroSpeed()
+{
+  leftMotor->setSpeed(0);
+  rightMotor->setSpeed(0);
+}
 void loop()
 {
-  if (motorCode != 0) {
-    Serial.print(motorCode);
-    Serial.println(" at " + speedValue);
-  }
+  zeroSpeed();
 }
