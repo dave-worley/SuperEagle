@@ -32,4 +32,6 @@
 - (IBAction)scanForPeripherals:(id)sender;
 - (void) bleWrite:(NSString *)payload;
 
+- (CGFloat) calculateVolume:(CGFloat)sliderValue;
+
 @end

@@ -39,6 +39,7 @@
     NSURL *themeURL = [[NSBundle mainBundle] URLForResource:@"sunmantheme" withExtension:@"caf"];
     self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:themeURL error:nil];
     [self.player prepareToPlay];
+    [self.player setVolume:0.0f];
 }
 
 - (void)didReceiveMemoryWarning
@@ -85,10 +86,23 @@
 }
 
 #pragma mark - Event Handling
+- (CGFloat) calculateVolume:(CGFloat)sliderValue
+{
+    CGFloat const inMin = 0.0;
+    CGFloat const inMax = 255.0;
+
+    CGFloat const outMin = 0.1;
+    CGFloat const outMax = 1.0;
+
+    CGFloat in = sliderValue;
+    CGFloat out = outMin + (outMax - outMin) * (in - inMin) / (inMax - inMin);
+    return out;
+}
 - (IBAction) leftMotorSliderChanged:(id)sender
 {
     UISlider *slider = (UISlider *)sender;
     NSInteger index = roundl(slider.value);
+    [self.player setVolume:[self calculateVolume:slider.value]];
     NSString *outputString = [NSString stringWithFormat:@"l:%d", index];
     [self bleWrite:outputString];
 }
@@ -96,6 +110,7 @@
 {
     UISlider *slider = (UISlider *)sender;
     NSInteger index = roundl(slider.value);
+    [self.player setVolume:[self calculateVolume:slider.value]];
     NSString *outputString = [NSString stringWithFormat:@"m:%d", index];
     [self bleWrite:outputString];
 }
@@ -103,6 +118,7 @@
 {
     UISlider *slider = (UISlider *)sender;
     NSInteger index = roundl(slider.value);
+    [self.player setVolume:[self calculateVolume:slider.value]];
     NSString *outputString = [NSString stringWithFormat:@"r:%d", index];
     [self bleWrite:outputString];
 }
@@ -146,6 +162,7 @@
     [self.buttonConnect setTitle:@"Connect"];
     [self.buttonConnect setTintColor:[UIColor redColor]];
     [self.player stop];
+    [self.player setCurrentTime:0.0];
 }
 
 -(void) bleDidConnect
