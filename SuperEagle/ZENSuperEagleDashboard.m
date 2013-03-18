@@ -26,16 +26,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
     self.bleShield = [[BLE alloc] init];
     [self.bleShield controlSetup:1];
     self.bleShield.delegate = self;
-
-    NSArray *sliders = [NSArray arrayWithObjects:self.leftMotorSlider,
-                                                 self.motorSlider,
-                                                 self.rightMotorSlider, nil];
-    [self positionMotorSliders:[self realignMotorSliders:sliders]];
-
+    [self setPanGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self
+                                                                          action:@selector(controlPadWasTouched:)]];
+    [self.controlPad addGestureRecognizer:self.panGestureRecognizer];
     NSURL *themeURL = [[NSBundle mainBundle] URLForResource:@"sunmantheme" withExtension:@"caf"];
     self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:themeURL error:nil];
     [self.player prepareToPlay];
@@ -48,44 +44,52 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (NSArray *) realignMotorSliders:(NSArray *)motorSliders
-{
-    CGAffineTransform trans = CGAffineTransformMakeRotation(M_PI * -0.5);
-    for (UISlider *slider in motorSliders) {
-        [slider setTransform:trans];
-    }
-    return motorSliders;
-}
-- (NSArray *) positionMotorSliders:(NSArray *)motorSliders
-{
-    CGRect windowFrame = [[UIScreen mainScreen] bounds];
-    NSInteger width = windowFrame.size.width;
-    NSInteger columnWidth = width / 3;
-    NSInteger columnStart = (columnWidth / 2) - 5;
-    for (UISlider *slider in motorSliders) {
-        CGRect sliderFrame = slider.frame;
-        CGRect newFrame = CGRectMake(columnStart, 20, sliderFrame.size.width, sliderFrame.size.height);
-        [slider setFrame:newFrame];
-        columnStart += columnWidth;
-    }
-    return motorSliders;
-}
-- (NSArray *)positionMotorSpeedLabels:(NSArray *)motorSpeedLabels
-{
-    CGRect windowFrame = [[UIScreen mainScreen] bounds];
-    NSInteger width = windowFrame.size.width;
-    NSInteger columnWidth = width / 3;
-    NSInteger columnStart = (columnWidth / 2) - 5;
-    for (UILabel *label in motorSpeedLabels) {
-        CGRect currentFrame = [label frame];
-        CGRect newFrame = CGRectMake(columnStart, currentFrame.origin.y, currentFrame.size.width, currentFrame.size.height);
-        [label setFrame:newFrame];
-        columnStart += columnWidth;
-    }
-    return motorSpeedLabels;
-}
-
 #pragma mark - Event Handling
+- (void) controlPadWasTouched:(id)sender
+{
+    UIPanGestureRecognizer *gesture = (UIPanGestureRecognizer *)sender;
+    NSInteger columnSize = (self.controlPad.frame.size.width / 3) / 2;
+    CGPoint controlPadCenter = CGPointMake(self.controlPad.frame.size.width/2,
+                                           self.controlPad.frame.size.height/2);
+    switch (gesture.state) {
+        case UIGestureRecognizerStateBegan:
+        {
+            break;
+        }
+
+        case UIGestureRecognizerStateChanged:
+        {
+            CGPoint touchInControlPad = [gesture locationInView:self.controlPad];
+            NSInteger xDistanceFromCenter = (touchInControlPad.x - controlPadCenter.x); //fabsf(touchInControlPad.x - controlPadCenter.x);
+            NSInteger yDistanceFromCenter = (touchInControlPad.y - controlPadCenter.y) * -1; //fabsf(touchInControlPad.y - controlPadCenter.y);
+            NSString *motorCode = @"m";
+            if (fabsf(xDistanceFromCenter) > columnSize && touchInControlPad.x > controlPadCenter.x) {
+                motorCode = @"r";
+            } else if (fabsf(xDistanceFromCenter) > columnSize && touchInControlPad.x < controlPadCenter.x) {
+                motorCode = @"l";
+            } else {
+                motorCode = @"m";
+            }
+            NSString *payload = [NSString stringWithFormat:@"%@:%d", motorCode, yDistanceFromCenter * 2];
+            [self bleWrite:payload];
+
+            [self.player setVolume:[self calculateVolume:fabsf(yDistanceFromCenter)]];
+            break;
+        }
+
+        case UIGestureRecognizerStateEnded:
+        {
+            [self bleWrite:@"m:0"]; // sends a stop
+            break;
+        }
+
+        default:
+        {
+            [self bleWrite:@"m:0"]; // sends a stop
+            break;
+        }
+    }
+}
 - (CGFloat) calculateVolume:(CGFloat)sliderValue
 {
     CGFloat const inMin = 0.0;
@@ -97,41 +101,6 @@
     CGFloat in = sliderValue;
     CGFloat out = outMin + (outMax - outMin) * (in - inMin) / (inMax - inMin);
     return out;
-}
-- (IBAction) leftMotorSliderChanged:(id)sender
-{
-    UISlider *slider = (UISlider *)sender;
-    NSInteger index = roundl(slider.value);
-    [self.player setVolume:[self calculateVolume:slider.value]];
-    NSString *outputString = [NSString stringWithFormat:@"l:%d", index];
-    [self bleWrite:outputString];
-}
-- (IBAction) motorSliderChanged:(id)sender
-{
-    UISlider *slider = (UISlider *)sender;
-    NSInteger index = roundl(slider.value);
-    [self.player setVolume:[self calculateVolume:slider.value]];
-    NSString *outputString = [NSString stringWithFormat:@"m:%d", index];
-    [self bleWrite:outputString];
-}
-- (IBAction) rightMotorSliderChanged:(id)sender
-{
-    UISlider *slider = (UISlider *)sender;
-    NSInteger index = roundl(slider.value);
-    [self.player setVolume:[self calculateVolume:slider.value]];
-    NSString *outputString = [NSString stringWithFormat:@"r:%d", index];
-    [self bleWrite:outputString];
-}
-- (IBAction) motorSliderWasReleased:(id)sender
-{
-    [UIView animateWithDuration:0.25f animations:^{
-        [(UISlider *)sender setValue:0];
-    }];
-    [self bleWrite:@"m:0"];
-}
-- (NSString *) stringForSlider:(UISlider *)slider
-{
-    return [NSString stringWithFormat:@"%f", slider.value];
 }
 - (void) bleWrite:(NSString *)payload
 {

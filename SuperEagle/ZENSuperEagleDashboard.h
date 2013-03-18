@@ -14,20 +14,16 @@
 
 @property (strong, nonatomic) BLE *bleShield;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
-@property (weak, nonatomic) IBOutlet UISlider *leftMotorSlider;
-@property (weak, nonatomic) IBOutlet UISlider *motorSlider;
-@property (weak, nonatomic) IBOutlet UISlider *rightMotorSlider;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *buttonConnect;
+
+@property (weak, nonatomic) IBOutlet UIView *controlPad;
+@property (weak, nonatomic) IBOutlet UILabel *touchDisplay;
+@property (strong, nonatomic) UIGestureRecognizer *panGestureRecognizer;
+
+- (void) controlPadWasTouched:(id)sender;
 
 @property (strong, nonatomic) AVAudioPlayer *player;
 
-- (IBAction) leftMotorSliderChanged:(id)sender;
-- (IBAction) motorSliderChanged:(id)sender;
-- (IBAction) rightMotorSliderChanged:(id)sender;
-- (IBAction) motorSliderWasReleased:(id)sender;
-- (NSArray *) realignMotorSliders:(NSArray *)motorSliders;
-- (NSArray *) positionMotorSliders:(NSArray *)motorSliders;
-- (NSString *) stringForSlider:(UISlider *)slider;
 - (void) connectionTimer:(NSTimer *)timer;
 - (IBAction)scanForPeripherals:(id)sender;
 - (void) bleWrite:(NSString *)payload;
