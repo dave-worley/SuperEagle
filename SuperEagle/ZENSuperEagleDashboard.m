@@ -127,9 +127,7 @@
     [UIView animateWithDuration:0.25f animations:^{
         [(UISlider *)sender setValue:0];
     }];
-    NSUInteger index = 0;
-    NSData *payload = [NSData dataWithBytes:&index length:sizeof(index)];
-    [self.bleShield write:payload];
+    [self bleWrite:@"m:0"];
 }
 - (NSString *) stringForSlider:(UISlider *)slider
 {
