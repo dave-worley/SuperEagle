@@ -7,12 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BLE.h"
+#import <CoreBluetooth/CoreBluetooth.h>
 #import <AVFoundation/AVFoundation.h>
 
-@interface ZENSuperEagleDashboard : UIViewController <BLEDelegate>
+@interface ZENSuperEagleDashboard : UIViewController
 
-@property (strong, nonatomic) BLE *bleShield;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *buttonConnect;
 
