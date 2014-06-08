@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <AVFoundation/AVFoundation.h>
+#import "ZENBLEPeripheralManager.h"
 
 @interface ZENSuperEagleDashboard : UIViewController
 
@@ -18,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UIView *controlPad;
 @property (weak, nonatomic) IBOutlet UILabel *touchDisplay;
 @property (strong, nonatomic) UIGestureRecognizer *panGestureRecognizer;
+
+@property (strong, nonatomic) ZENBLEPeripheralManager *peripheralManager;
 
 - (void) controlPadWasTouched:(id)sender;
 

@@ -23,6 +23,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setPeripheralManager:[[ZENBLEPeripheralManager alloc] init]];
     [self setPanGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self
                                                                           action:@selector(controlPadWasTouched:)]];
     [self.controlPad addGestureRecognizer:self.panGestureRecognizer];
