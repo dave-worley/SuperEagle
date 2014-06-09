@@ -17,7 +17,7 @@
 @property (strong, nonatomic) CBMutableCharacteristic *directionCharacteristic;
 @property (strong, nonatomic) CBMutableCharacteristic *speedCharacteristic;
 
-@property (nonatomic, readwrite) NSInteger direction;
+@property (nonatomic, readwrite) CGFloat direction;
 @property (nonatomic, readwrite) NSInteger speed;
 @property (strong, nonatomic) NSData *directionData;
 @property (strong, nonatomic) NSData *speedData;

@@ -28,7 +28,7 @@
 
 - (void) connectionTimer:(NSTimer *)timer;
 - (IBAction)scanForPeripherals:(id)sender;
-- (void) bleWrite:(NSString *)payload;
+- (void) bleWrite:(CGFloat)direction atSpeed:(NSInteger)speed;
 
 - (CGFloat) calculateVolume:(CGFloat)sliderValue;
 

@@ -55,28 +55,33 @@
             CGPoint touchInControlPad = [gesture locationInView:self.controlPad];
             NSInteger xDistanceFromCenter = (touchInControlPad.x - controlPadCenter.x); //fabsf(touchInControlPad.x - controlPadCenter.x);
             NSInteger yDistanceFromCenter = (touchInControlPad.y - controlPadCenter.y) * -1; //fabsf(touchInControlPad.y - controlPadCenter.y);
-            NSString *motorCode = @"m";
+            CGFloat direction = 0.5f;
             if (fabsf(xDistanceFromCenter) > columnSize && touchInControlPad.x > controlPadCenter.x) {
-                motorCode = @"r";
+                direction = 1.0f;
             } else if (fabsf(xDistanceFromCenter) > columnSize && touchInControlPad.x < controlPadCenter.x) {
-                motorCode = @"l";
-            } else {
-                motorCode = @"m";
+                direction = 0.0f;
             }
-            NSString *payload = [NSString stringWithFormat:@"%@:%d", motorCode, yDistanceFromCenter * 2];
-            [self bleWrite:payload];
+            NSInteger speed = yDistanceFromCenter * 2;
+            if (abs(speed) > MAX_SPEED) {
+                NSInteger modifier = 1;
+                if (speed < 0) {
+                    modifier = -1;
+                }
+                speed = MAX_SPEED * modifier;
+            }
+            [self bleWrite:direction atSpeed:speed];
 
             [self.player setVolume:[self calculateVolume:fabsf(yDistanceFromCenter)]];
             break;
         }
 
         case UIGestureRecognizerStateEnded: {
-            [self bleWrite:@"m:0"]; // sends a stop
+            [self bleWrite:0.5f atSpeed:0]; // sends a stop
             break;
         }
 
         default: {
-            [self bleWrite:@"m:0"]; // sends a stop
+            [self bleWrite:0.5f atSpeed:0]; // sends a stop
             break;
         }
     }
@@ -93,11 +98,10 @@
     CGFloat out = outMin + (outMax - outMin) * (in - inMin) / (inMax - inMin);
     return out;
 }
-- (void) bleWrite:(NSString *)payload
+- (void) bleWrite:(CGFloat)direction atSpeed:(NSInteger)speed
 {
-    NSData *data = [payload dataUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@"data: %@", data);
-    // call write here
+    [_peripheralManager setDirection:direction];
+    [_peripheralManager setSpeed:speed];
     return;
 }
 

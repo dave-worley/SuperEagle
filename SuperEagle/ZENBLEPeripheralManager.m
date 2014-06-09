@@ -15,18 +15,22 @@
     self = [super init];
 
     if (self) {
-
         _serviceUUID = [CBUUID UUIDWithString:CONTROL_SERVICE_UUID];
         _directionUUID = [CBUUID UUIDWithString:DIRECTION_CHARACTERISTIC_UUID];
         _speedUUID = [CBUUID UUIDWithString:SPEED_CHARACTERISTIC_UUID];
-
         _manager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
-        NSDictionary *controlService = @{CBAdvertisementDataServiceUUIDsKey: @[_serviceUUID]};
-        [_manager startAdvertising:controlService];
         _direction = 0.5f;
         _speed = 0;
     }
     return self;
+}
+
+- (void) peripheralManager:(CBPeripheralManager *)peripheral didAddService:(CBService *)service error:(NSError *)error {
+
+}
+
+- (void)peripheralManagerDidStartAdvertising:(CBPeripheralManager *)peripheral error:(NSError *)error{
+
 }
 
 - (void) peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral {
@@ -34,12 +38,17 @@
         return;
     }
 
+    NSDictionary *controlServiceSettings = @{CBAdvertisementDataLocalNameKey : @"RobotRemote",
+                                             CBAdvertisementDataServiceUUIDsKey: @[_serviceUUID]};
+    [_manager startAdvertising:controlServiceSettings];
+    NSLog(@"Advertising control service.");
+
     _directionCharacteristic = [[CBMutableCharacteristic alloc] initWithType:_directionUUID
-                                                                  properties:CBCharacteristicPropertyNotify
+                                                                  properties:CBCharacteristicPropertyRead
                                                                        value:nil
                                                                  permissions:CBAttributePermissionsReadable];
     _speedCharacteristic = [[CBMutableCharacteristic alloc] initWithType:_speedUUID
-                                                              properties:CBCharacteristicPropertyNotify
+                                                              properties:CBCharacteristicPropertyRead
                                                                    value:nil
                                                              permissions:CBAttributePermissionsReadable];
 
@@ -56,10 +65,12 @@ didSubscribeToCharacteristic:(CBCharacteristic *)characteristic {
 }
 
 - (void)peripheralManagerIsReadyToUpdateSubscribers:(CBPeripheralManager *)peripheral {
+    NSLog(@"%fd, %d", _direction, _speed);
     [self prepareAndSendData];
 }
 
 - (void) prepareAndSendData {
+    NSLog(@"preparing data");
     // make the values be data
     _directionData = [NSData dataWithBytes: &_direction length: sizeof(_direction)];
     _speedData = [NSData dataWithBytes: &_speed length: sizeof(_speed)];
