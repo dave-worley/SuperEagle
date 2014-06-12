@@ -26,11 +26,23 @@
 }
 
 - (void) peripheralManager:(CBPeripheralManager *)peripheral didAddService:(CBService *)service error:(NSError *)error {
-
+    if (error) {
+        NSLog(@"Error adding service: %@", error);
+    } else {
+        NSLog(@"Added service: %@", service);
+        NSDictionary *controlServiceSettings = @{CBAdvertisementDataLocalNameKey : @"RobotRemote",
+                                                 CBAdvertisementDataServiceUUIDsKey: @[service.UUID]};
+        [_manager startAdvertising:controlServiceSettings];
+        NSLog(@"Advertising control service.");
+    }
 }
 
 - (void)peripheralManagerDidStartAdvertising:(CBPeripheralManager *)peripheral error:(NSError *)error{
-
+    if (error) {
+        NSLog(@"Error advertising: %@", error);
+    } else {
+        NSLog(@"Peripheral is advertising: %@", peripheral);
+    }
 }
 
 - (void) peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral {
@@ -38,24 +50,21 @@
         return;
     }
 
-    NSDictionary *controlServiceSettings = @{CBAdvertisementDataLocalNameKey : @"RobotRemote",
-                                             CBAdvertisementDataServiceUUIDsKey: @[_serviceUUID]};
-    [_manager startAdvertising:controlServiceSettings];
-    NSLog(@"Advertising control service.");
-
-    _directionCharacteristic = [[CBMutableCharacteristic alloc] initWithType:_directionUUID
+    if (peripheral.state == CBPeripheralManagerStatePoweredOn) {
+        _directionCharacteristic = [[CBMutableCharacteristic alloc] initWithType:_directionUUID
+                                                                      properties:CBCharacteristicPropertyRead
+                                                                           value:nil
+                                                                     permissions:CBAttributePermissionsReadable];
+        _speedCharacteristic = [[CBMutableCharacteristic alloc] initWithType:_speedUUID
                                                                   properties:CBCharacteristicPropertyRead
                                                                        value:nil
                                                                  permissions:CBAttributePermissionsReadable];
-    _speedCharacteristic = [[CBMutableCharacteristic alloc] initWithType:_speedUUID
-                                                              properties:CBCharacteristicPropertyRead
-                                                                   value:nil
-                                                             permissions:CBAttributePermissionsReadable];
 
-    // make the service with the characteristics
-    CBMutableService *controlService = [[CBMutableService alloc] initWithType:_serviceUUID primary:YES];
-    controlService.characteristics = @[_directionCharacteristic, _speedCharacteristic];
-    [_manager addService:controlService];
+        // make the service with the characteristics
+        CBMutableService *controlService = [[CBMutableService alloc] initWithType:_serviceUUID primary:YES];
+        controlService.characteristics = @[_directionCharacteristic, _speedCharacteristic];
+        [_manager addService:controlService];
+    }
 }
 
 - (void) peripheralManager:(CBPeripheralManager *)peripheral
